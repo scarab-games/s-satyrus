@@ -30,7 +30,7 @@ pub fn agent_system<'a, A>(
 ) where
     A: Agent<'a>,
 {
-    for (mut agent, mut controller, agent_info) in agent_query.iter_mut() {
+    for (mut agent, mut controller, agent_info) in &mut agent_query {
         let target = agent.get_target(agent_info, &controller, &target_query);
         agent.act(&mut controller, agent_info, target.as_ref())
     }
